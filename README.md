@@ -74,9 +74,9 @@ It supports interactive and non-interactive modes, command execution, environmen
 
 Compile on **Ubuntu 20.04 LTS** using:
 
-```sh
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
+---
 
 ## Contributors
 This project was completed as a team effort by:
