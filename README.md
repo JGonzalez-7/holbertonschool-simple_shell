@@ -1,6 +1,6 @@
 # Simple Shell
 
-A minimal Unix shell written in C, built as part of the Holberton School curriculum.
+This project focuses on understanding **process control**, **system calls**, **memory management**, and **Unix internals**.
 
 ---
 
@@ -8,8 +8,6 @@ A minimal Unix shell written in C, built as part of the Holberton School curricu
 
 **Simple Shell** is a custom implementation of a Unix command-line interpreter that mimics basic behavior of `/bin/sh`.  
 It supports interactive and non-interactive modes, command execution, environment handling, and basic built-in commands.
-
-This project focuses on understanding **process control**, **system calls**, **memory management**, and **Unix internals**.
 
 ---
 
