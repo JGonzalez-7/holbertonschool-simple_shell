@@ -76,3 +76,12 @@ Compile on **Ubuntu 20.04 LTS** using:
 
 ```sh
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+
+
+## Contributors
+This project was completed as a team effort by:
+
+**Joshua Gonzalez:** [GitHub Profile](https://github.com/JGonzalez-7)
+[LinkedIn Profile](https://www.linkedin.com/in/joshua-gonzalez-398b73267/)
+
+Hello, I’m Joshua Gonzalez, one of the developers who worked on this project. Feel free to explore my work and connect with me on LinkedIn. I’m excited about the possibility of collaborating and exchanging ideas with you.
