@@ -92,3 +92,8 @@ Hello, I’m Joshua Gonzalez, one of the developers who worked on this project. 
 
 Hi, my name is Alexander Rivas, and I'm a software engineering student.
 This project implements a simple UNIX shell, reinforcing concepts like processes, system calls, and memory management. I’m always open to connecting so don't hesitate to check my pages and reach out.
+
+**Eugenio Martinez:** [GitHub Profile](https://github.com/Krotos69)
+[LinkedIn Profile](https://www.linkedin.com/in/eugenio-martinez-a5271943/)
+
+Best regards! I'm Eugen Martínez, a creative, passionate, and highly motivated developer, and a contributor to this project. I'm always excited to connect, learn, and grow by exchanging ideas with other professionals and learning from them.
