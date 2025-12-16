@@ -85,3 +85,8 @@ This project was completed as a team effort by:
 [LinkedIn Profile](https://www.linkedin.com/in/joshua-gonzalez-398b73267/)
 
 Hello, I’m Joshua Gonzalez, one of the developers who worked on this project. Feel free to explore my work and connect with me on LinkedIn. I’m excited about the possibility of collaborating and exchanging ideas with you.
+
+**Eugenio Martinez:** [GitHub Profile](https://github.com/Krotos69)
+[LinkedIn Profile](https://www.linkedin.com/in/eugenio-martinez-a5271943/)
+
+Best regards! I'm Eugen Martínez, a creative, passionate, and highly motivated developer, and a contributor to this project. I'm always excited to connect, learn, and grow by exchanging ideas with other professionals and learning from them.
