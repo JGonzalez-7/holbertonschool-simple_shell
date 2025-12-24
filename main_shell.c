@@ -33,7 +33,7 @@ int main(void)
 		args = parse_line(line);
 		if (args && args[0])
 		{
-			if (!handle_builtin(args))
+			if (!handle_builtin(args) == 0)
 				execute_command(args);
 		}
 
