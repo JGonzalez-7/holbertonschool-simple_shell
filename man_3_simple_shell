@@ -1,0 +1,74 @@
+.\" Manpage for command_name
+.TH command_name 1 "Month Year" "version" "User Commands"
+
+.SH NAME
+command_name \- short description of the command
+
+.SH SYNOPSIS
+.B command_name
+[\fIOPTIONS\fR] [\fIFILE\fR] ...
+
+.SH DESCRIPTION
+Brief but clear description of what the program does.
+
+.PP
+More detailed explanation of the behavior, features, and typical use cases.
+
+.SH OPTIONS
+.TP
+.B \-h, \-\-help
+Show help message and exit.
+
+.TP
+.B \-v, \-\-version
+Show version information and exit.
+
+.TP
+.B \-o, \-\-output\fR=\fIFILE\fR
+Write output to \fIFILE\fR instead of standard output.
+
+.SH ARGUMENTS
+.TP
+.I FILE
+Input file(s) to be processed.
+
+.SH EXAMPLES
+.TP
+Run command with a file:
+.B command_name
+input.txt
+
+.TP
+Run command with an output file:
+.B command_name \-o result.txt
+input.txt
+
+.SH EXIT STATUS
+.TP
+.B 0
+Success.
+
+.TP
+.B non-zero
+An error occurred.
+
+.SH FILES
+.TP
+.I /etc/command_name.conf
+System-wide configuration file.
+
+.SH ENVIRONMENT
+.TP
+.B COMMAND_NAME_CONFIG
+Path to a custom configuration file.
+
+.SH BUGS
+Report bugs to <email@example.com>.
+
+.SH AUTHOR
+Your Name <email@example.com>
+
+.SH SEE ALSO
+.BR other_command (1),
+.BR another_command (1)
+
