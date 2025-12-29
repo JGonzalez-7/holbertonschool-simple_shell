@@ -23,6 +23,9 @@ char **parse_line(char *line);
 /* Execution */
 int execute_command(char **args);
 
+/* handle */
+extern char **environ;
+
 /* PATH */
 char *find_path(char *command);
 
