@@ -31,6 +31,8 @@ char *find_path(char *command);
 
 /* Builtins */
 int handle_builtin(char **args);
+int builtin_exit(char **args);
+int builtin_env(char **args);
 
 /* Errors */
 void print_error(char *command);
