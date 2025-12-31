@@ -1,44 +1,24 @@
 #include "shell.h"
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
 
 /**
- * handle_builtin - checks and executes built-in commands
+ * handle_builtin - Checks and executes built-in commands
+ * @args: Array of strings containing the command and its arguments
  *
- * Description:
- * This function checks if the given command is a built-in command
- * (like 'cd', 'exit', or 'env') and executes it if so.
- * If the command is not a built-in, it returns 0 to indicate
- * that the caller should handle it as an external command.
+ * Description: Checks if the given command is a built-in (exit, env)
+ * and executes it. Returns 0 if not a built-in.
  *
- * @args: array of strings containing the command and its arguments.
- *
- * Return: 1 if the command was a built-in and was handled,
- *         0 if the command is not a built-in and needs further
-*	processing.
+ * Return: 1 if handled as built-in, 0 if not a built-in
  */
 int handle_builtin(char **args)
 {
 	if (args == NULL || args[0] == NULL)
-		return (0); /* no command entered */
+		return (0);
+
 	if (strcmp(args[0], "exit") == 0)
-	{
-		exit(0); /* exit the shell */
-	}
-	else if (strcmp(args[0], "cd") == 0)
-	{
-		if (args[1] == NULL)
-		{
-			fprintf(stderr, "cd: expected argument\n");
-		}
-		else
-		{
-			if (chdir(args[1]) != 0)
-				perror("cd failed");
-		}
-		return (1); /* handled */
-	}
-	return (0); /* not a builtin, caller should exec */
+		return (builtin_exit(args));
+
+	if (strcmp(args[0], "env") == 0)
+		return (builtin_env(args));
+
+	return (0);
 }
