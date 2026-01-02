@@ -1,76 +1,80 @@
-.\" Manpage for command_name
-.TH command_name 1 "Month Year" "version" "User Commands"
+.\" Manpage for simple shell project
+.TH hsh 1 "January 2026" "hsh" "User Commands"
 
 .SH NAME
-command_name \- short description of the command
+hsh \- simple UNIX command interpreter
 
 .SH SYNOPSIS
-.B command_name
-[\fIOPTIONS\fR] [\fIFILE\fR] ...
+.B hsh
+.br
+.B command | hsh
+.br
+.B hsh < script
 
 .SH DESCRIPTION
-Brief but clear description of what the program does.
+.B hsh
+is a minimal shell that executes commands read from standard input. It supports
+interactive and non-interactive modes, resolves commands through \fBPATH\fR,
+and provides the built-ins \fBexit\fR and \fBenv\fR.
 
-.PP
-More detailed explanation of the behavior, features, and typical use cases.
-
-.SH OPTIONS
+.SH MODES
 .TP
-.B \-h, \-\-help
-Show help message and exit.
-
+Interactive
+Prompts with \fI($)\fR, reads a line, executes, and repeats until \fBexit\fR or
+EOF (Ctrl+D). On EOF a trailing newline is printed before exiting.
 .TP
-.B \-v, \-\-version
-Show version information and exit.
+Non-interactive
+Reads commands from a pipe or redirected file until EOF; no prompt is shown.
 
-.TP
-.B \-o, \-\-output\fR=\fIFILE\fR
-Write output to \fIFILE\fR instead of standard output.
+.SH COMMAND EXECUTION
+.IP \[bu] 2
+Tokens are split on spaces or tabs; no quoting or variable expansion.
+.IP \[bu] 2
+Absolute/relative paths are executed directly if the file exists.
+.IP \[bu] 2
+Otherwise, directories in \fBPATH\fR are searched in order; the first match
+is executed. If no match is found, an error is printed and status 127 is set.
+.IP \[bu] 2
+If a found command lacks execute permission, status 126 is set.
+.IP \[bu] 2
+Each external command runs in a child process via \fIfork\fR + \fIexecve\fR;
+the shell waits and propagates the child's exit status.
 
-.SH ARGUMENTS
+.SH BUILT-INS
 .TP
-.I FILE
-Input file(s) to be processed.
+.B exit [status]
+Terminate the shell with \fIstatus\fR, or with the last command's status if
+no argument is given.
+.TP
+.B env
+Print the current environment variables, one per line.
+
+.SH ERRORS
+Errors follow the format: \fIprogram: line: command: message\fR. Examples:
+\"./hsh: 3: fake: not found\" or \"./hsh: 4: ls: Permission denied\".
+
+.SH EXIT STATUS
+The shell exits with the status of the last executed command or the value
+passed to \fBexit\fR. Not found commands return 127; permission errors return
+126.
 
 .SH EXAMPLES
 .TP
-Run command with a file:
-.B command_name
-input.txt
-
+Interactive:
+.br
+.B ($) /bin/ls
+.br
+.B ($) exit
 .TP
-Run command with an output file:
-.B command_name \-o result.txt
-input.txt
+Non-interactive:
+.br
+.B echo \"/bin/ls\" | ./hsh
+.br
+.B printf \"env\\nexit\\n\" | ./hsh
 
-.SH EXIT STATUS
-.TP
-.B 0
-Success.
-
-.TP
-.B non-zero
-An error occurred.
-
-.SH FILES
-.TP
-.I /etc/command_name.conf
-System-wide configuration file.
-
-.SH ENVIRONMENT
-.TP
-.B COMMAND_NAME_CONFIG
-Path to a custom configuration file.
-
-.SH BUGS
-Report bugs to <email@example.com>.
-
-.SH AUTHOR
+.SH AUTHORS
 Eugenio Martinez <emartinez714@gmail.com>
+.br
 Alexander Rivas <acrcpr@gmail.com>
+.br
 Joshua Gonzalez <joshgonzalez027@gmail.com>
-
-.SH SEE ALSO
-.BR other_command (1),
-.BR another_command (1)
-

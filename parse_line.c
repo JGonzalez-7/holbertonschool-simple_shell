@@ -9,6 +9,7 @@ char **parse_line(char *line)
 	int bufsize = 64, position = 0;
 	char **args = malloc(bufsize * sizeof(char *));
 	char *token;
+
 	if (!args) /*handle allocation failure*/
 	{
 		perror("malloc failed");
@@ -17,8 +18,8 @@ char **parse_line(char *line)
 	token = strtok(line, " \t\n"); /*split line into tokens*/
 	while (token != NULL)
 	{
-		args[position] = token; /*assign token to args array*/
-		if (position >= bufsize) /* resize args array*/
+		args[position++] = token; /*assign token to args array*/
+		if (position >= bufsize - 1) /* resize args array*/
 		{
 			bufsize += 64;
 			args = realloc(args, bufsize * sizeof(char *));
@@ -28,7 +29,7 @@ char **parse_line(char *line)
 				exit(EXIT_FAILURE);
 			}
 		}
-		token = strtok(NULL, "\t\n"); /*get next token*/
+		token = strtok(NULL, " \t\n"); /*get next token*/
 	}
 	args[position] = NULL; /*null-terminate the array*/
 	return (args); /*return the array of arguments*/

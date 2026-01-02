@@ -26,7 +26,7 @@ static char *get_path_env(void)
  */
 static int check_file_exists(char *filepath)
 {
-	if (access(filepath, F_OK | X_OK) == 0)
+	if (access(filepath, F_OK) == 0)
 		return (1);
 	return (0);
 }
