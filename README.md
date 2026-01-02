@@ -14,7 +14,11 @@ It supports interactive and non-interactive modes, command execution, environmen
 ## Objectives
 
 - Learn how a Unix shell works internally
-- Practice using low-level system calls (`fork`, `execve`, `wait`, etc.)
+-Tokenization: splits on spaces/tabs (no quoting or expansion).
+- PATH lookup: absolute/relative paths executed directly; otherwise searches directories in `$PATH` and runs the first executable found.
+- Execution: forks, execve, waits; returns child exit status.
+- Status codes: 127 when a command is not found, 126 when found but not executable; other commands propagate their own exit codes.
+- Errors: `program: line: command: message` (e.g., `./hsh: 3: fake: not found`).
 - Understand process creation and execution
 - Handle environment variables
 - Apply proper memory management in C
@@ -28,7 +32,7 @@ It supports interactive and non-interactive modes, command execution, environmen
 - Executes commands with or without arguments
 - Resolves commands using the `PATH` environment variable
 - Graceful error handling
-- Handles `Ctrl + D` (EOF)
+- EOF (Ctrl+D) exits; in interactive mode a trailing newline is printed.
 - Built-in commands:
   - `exit` – exits the shell
   - `env` – prints environment variables
@@ -72,7 +76,7 @@ It supports interactive and non-interactive modes, command execution, environmen
 
 ## Compilation
 
-Compile on **Ubuntu 20.04 LTS** using:
+Compile using:
 
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
