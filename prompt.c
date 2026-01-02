@@ -7,5 +7,5 @@
 */
 void print_prompt(void)
 {
-	write(STDOUT_FILENO, "$ ", 2); /*Print "$ " to the terminal */
+	write(STDOUT_FILENO, "($) ", 4); /*Print "($) " to the terminal */
 }
