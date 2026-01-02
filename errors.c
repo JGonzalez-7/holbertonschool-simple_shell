@@ -1,14 +1,22 @@
 #include "shell.h"
 
 /**
- * print_error - Prints error message for command not found
- * @command: The command that was not found
+ * print_error - Prints formatted error message
+ * @program: Name of the shell executable
+ * @line_count: Line number of the current command
+ * @command: The command that caused the error
+ * @message: Error description
  *
- * Description: Prints an error message to stderr when a command
- * is not found in PATH or as an absolute path.
+ * Description: Prints errors using the format required by the project:
+ * program: line: command: message
  */
-void print_error(char *command)
+void print_error(char *program, int line_count, char *command, char *message)
 {
-	write(STDERR_FILENO, command, strlen(command));
-	write(STDERR_FILENO, ": command not found\n", 20);
+	char buffer[1024];
+	int len;
+
+	len = snprintf(buffer, sizeof(buffer), "%s: %d: %s: %s\n",
+		       program, line_count, command, message);
+	if (len > 0)
+		write(STDERR_FILENO, buffer, len);
 }
