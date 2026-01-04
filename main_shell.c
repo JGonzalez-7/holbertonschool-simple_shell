@@ -41,16 +41,24 @@ int main(int argc, char **argv)
 			break;
 		}
 
-		args = parse_line(line);
-		if (args && args[0])
-		{
-			line_count++;
-			if (handle_builtin(args, &status) == 0)
-				status = execute_command(args, program, line_count);
-		}
+			args = parse_line(line);
+			if (args && args[0])
+			{
+				line_count++;
+				if (strcmp(args[0], "exit") == 0)
+				{
+					if (args[1] != NULL)
+						status = atoi(args[1]);
+					free(line);
+					free(args);
+					exit(status);
+				}
+				if (handle_builtin(args, &status) == 0)
+					status = execute_command(args, program, line_count);
+			}
 
-		free(line);
-		free(args);
-	}
+			free(line);
+			free(args);
+		}
 	return (status);
 }
