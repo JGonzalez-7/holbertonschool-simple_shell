@@ -1,55 +1,41 @@
 #include "shell.h"
 
 /**
- * execute_command - Executes a command using fork + execve
- *
- * Description:
- * Finds the command path using find_path().
- * If command not found, prints error and returns without forking.
- * Creates a child process with fork().
- * In the child process, uses execve() to execute the command.
- * The parent waits for the child to finish using waitpid().
- *
- * @args: array of strings containing the command and its arguments.
- *
- * Return: 1 on success to continue shell loop
+ * execute_command - run a command
+ * @args: argv
+ * @program: shell name
+ * @line_count: input line number
+ * Return: exit status code
  */
-int execute_command(char **args)
+
+int execute_command(char **args, char *program, int line_count)
 {
 	pid_t pid;
 	int status;
-	char *cmd_path;
+	char *cmd_path = find_path(args[0]);
 
-	cmd_path = find_path(args[0]);
 	if (!cmd_path)
-	{
-		print_error(args[0]);
-		return (1);
-	}
-
+		return (print_error(program, line_count, args[0], "not found"), 127);
+	if (access(cmd_path, X_OK) != 0)
+		return (print_error(program, line_count, args[0], "Permission denied"),
+			free(cmd_path), 126);
 	pid = fork();
-
 	if (pid == -1)
-	{
-		perror("fork failed");
-		free(cmd_path);
-		return (1);
-	}
-
+		return (perror("fork failed"), free(cmd_path), 1);
 	if (pid == 0)
 	{
 		if (execve(cmd_path, args, environ) == -1)
 		{
+			if (errno == EACCES)
+				exit(126);
 			perror(args[0]);
-			free(cmd_path);
 			exit(EXIT_FAILURE);
 		}
 	}
 	else
-	{
 		waitpid(pid, &status, 0);
-	}
-
 	free(cmd_path);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
 	return (1);
 }

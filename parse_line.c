@@ -1,8 +1,9 @@
 #include "shell.h"
 /**
 * parse_line - splits input into tokens (commands and arguments)
+* @line: buffer containing raw input; modified in place
 *
-*return: array of strings (command + arguments + NULL terminator)
+* Return: array of strings (command + arguments + NULL terminator)
 */
 char **parse_line(char *line)
 {
