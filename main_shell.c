@@ -11,6 +11,9 @@
  * The loop only stops when an end-of-file condition (Ctrl + D)
  * is encountered.
  *
+ * @argc: Argument count (unused)
+ * @argv: Argument vector; argv[0] is used for error messages
+ *
  * Return: Exit status of last executed command
  */
 
